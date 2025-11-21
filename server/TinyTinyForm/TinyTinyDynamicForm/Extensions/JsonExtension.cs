@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace TinyTinyDynamicForm;
+namespace TinyTinyDynamicForm.Extensions;
 
 public static class JsonExtension
 {

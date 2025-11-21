@@ -1,7 +1,7 @@
 import axios from "axios";
 import notify from "notify-zh";
 
-const API_BASE_URL = "http://localhost:5166/api/orders"
+const API_BASE_URL = "http://localhost:5166/api/submissions"
 
 export interface CreateOrderRequest {
     cake: string
@@ -23,7 +23,7 @@ export const createOrder = async (request : CreateOrderRequest) => {
 }
 
 export interface FetchOrdersRequest {
-    clientName: string,
+    search: string,
 }
 
 export const fetchOrders = async (request : FetchOrdersRequest) => {

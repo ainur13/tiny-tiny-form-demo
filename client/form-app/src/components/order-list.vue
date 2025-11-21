@@ -42,6 +42,7 @@ import { fetchOrders } from '@/api/order'
 import { DeliveryMethod } from '@/models/order'
 import spinner from './spinner.vue'
 import { toDate, formatDate } from '@/utils/date'
+import notify from "notify-zh";
 
 interface Order {
     cake: string,
@@ -67,11 +68,25 @@ watch(search, (value) => {
     debounce = setTimeout(() => { load() }, 300);
 })
 
+const parse = (data : any) => {
+    try {
+        console.log(data)
+        orders.value = [];
+        data.forEach(x => {
+            var order = JSON.parse(x.rawJson);
+            orders.value.push(order);
+        });
+    }
+    catch(err){
+        notify.error({ message: "Ooops! Something went wrong..."})
+    }
+}
+
 const load = () => {
     const lastRequest = ++requestCounter;
     loading.value = true;
-    fetchOrders({ clientName: search.value })
-        .then((o) => orders.value = o)
+    fetchOrders({ search: search.value })
+        .then((data) => parse(data))
         .finally(() => {
             if(lastRequest === requestCounter)
                 loading.value = false

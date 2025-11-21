@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TinyTinyDynamicForm.Domain.Entities;
+using TinyTinyDynamicForm.Models;
 
-namespace TinyTinyForm.Infrastructure;
+namespace TinyTinyDynamicForm.Data;
 
 public class AppDbContext : DbContext
 {
