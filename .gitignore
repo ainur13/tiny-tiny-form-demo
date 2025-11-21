@@ -42,3 +42,4 @@ yarn-error.log*
 # IDE/Editor
 .idea/
 .vscode/
+.vs/

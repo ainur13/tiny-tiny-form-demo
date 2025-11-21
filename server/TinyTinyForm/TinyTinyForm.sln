@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTinyForm", "TinyTinyForm\TinyTinyForm.csproj", "{4CB75726-3F46-4A2A-99FE-85071D64EB18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTinyDynamicForm", "TinyTinyDynamicForm\TinyTinyDynamicForm.csproj", "{AFAB0A37-80C9-44DA-B207-D419FDEF2BA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{4CB75726-3F46-4A2A-99FE-85071D64EB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB75726-3F46-4A2A-99FE-85071D64EB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB75726-3F46-4A2A-99FE-85071D64EB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFAB0A37-80C9-44DA-B207-D419FDEF2BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFAB0A37-80C9-44DA-B207-D419FDEF2BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFAB0A37-80C9-44DA-B207-D419FDEF2BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFAB0A37-80C9-44DA-B207-D419FDEF2BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC3FF54B-8A98-4B57-83F0-084C5755E667}
 	EndGlobalSection
 EndGlobal

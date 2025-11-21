@@ -33,7 +33,6 @@ public class OrderController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Order[]>> Get([FromQuery] GetOrdersRequest request, CancellationToken ct)
     {
-        Thread.Sleep(TimeSpan.FromSeconds(2));
         var orders = await _context.Orders
             .Where(x => string.IsNullOrWhiteSpace(request.ClientName) || EF.Functions.Like(x.ClientName, $"%{request.ClientName}%"))
             .ToArrayAsync(ct);
