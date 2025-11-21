@@ -25,11 +25,11 @@
                     <fieldset>
                         <legend>Delivery Method</legend>
                         <label>
-                            <input type="radio" name="delivery" :value="DeliveryMethod.Pickup" v-model="form.deliveryMethod">
+                            <input type="radio" name="delivery" value="Pickup" v-model="form.deliveryMethod">
                             Pickup
                         </label>
                         <label>
-                            <input type="radio" name="delivery" :value="DeliveryMethod.Courier" v-model="form.deliveryMethod">
+                            <input type="radio" name="delivery" value="Courier" v-model="form.deliveryMethod">
                             Courier
                         </label>
                     </fieldset>
@@ -58,13 +58,12 @@ import { formatDate } from '@/utils/date';
 import { createOrder } from '@/api/order';
 import notify from "notify-zh";
 import spinner from './spinner.vue';
-import { DeliveryMethod } from '@/models/order';
 
 interface OrderForm {
     cake: string,
     clientName: string,
     deliveryDate: string,
-    deliveryMethod: DeliveryMethod,
+    deliveryMethod: string,
     giftWrap?: boolean,
 }
 
@@ -72,7 +71,7 @@ const DefaultOrderForm = <OrderForm>{
     cake: "",
     clientName: "",
     deliveryDate: formatDate(new Date()),
-    deliveryMethod: DeliveryMethod.Pickup,
+    deliveryMethod: "Pickup",
     giftWrap: false,
 }
 

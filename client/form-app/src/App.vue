@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <order-form @order-accepted="list.load()"/>
+    <order-form @order-accepted="onOrderAccepted"/>
     <order-list ref="list"/>
   </main>
 </template>
@@ -12,6 +12,10 @@ import orderList from './components/order-list.vue'
 import { ref } from 'vue';
 
 const list = ref();
+
+const onOrderAccepted = () => {
+  list.value.refresh();
+}
 
 </script>
 

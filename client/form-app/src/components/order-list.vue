@@ -5,7 +5,7 @@
         <div class="table">
             <input 
                 type="search" 
-                placeholder="Search by Client Name..." 
+                placeholder="Search..." 
                 v-model="search"
             />
 
@@ -25,7 +25,7 @@
                     <td>{{ order.cake }}</td>
                     <td>{{ order.clientName }}</td>
                     <td>{{ formatDate(toDate(order.deliveryDate)) }}</td>
-                    <td>{{ order.deliveryMethod == 0 ? 'Pickup' : 'Courier' }}</td>
+                    <td>{{ order.deliveryMethod }}</td>
                     <td>{{ order.giftWrap ? 'Yes' : 'No' }}</td>
                 </tr>
                 </tbody>
@@ -39,16 +39,16 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { fetchOrders } from '@/api/order'
-import { DeliveryMethod } from '@/models/order'
 import spinner from './spinner.vue'
 import { toDate, formatDate } from '@/utils/date'
 import notify from "notify-zh";
 
 interface Order {
+    id: number,
     cake: string,
     clientName: string,
     deliveryDate: string,
-    deliveryMethod: DeliveryMethod,
+    deliveryMethod: string,
     giftWrap: boolean,
     createdAt: string,
 }
@@ -63,34 +63,28 @@ const orders = ref<Order[]>([]);
 
 watch(search, (value) => {
     search.value = value.trim();
-    if (!search.value) return;
     if(debounce) clearTimeout(debounce);
     debounce = setTimeout(() => { load() }, 300);
 })
 
-const parse = (data : any) => {
-    try {
-        console.log(data)
-        orders.value = [];
-        data.forEach(x => {
-            var order = JSON.parse(x.rawJson);
-            orders.value.push(order);
-        });
-    }
-    catch(err){
-        notify.error({ message: "Ooops! Something went wrong..."})
-    }
+const fetch = (data : any) => {
+    orders.value = [];
+    orders.value = data.map(x => ({ id: x.id, ...x.rawJson }))
 }
 
 const load = () => {
     const lastRequest = ++requestCounter;
     loading.value = true;
     fetchOrders({ search: search.value })
-        .then((data) => parse(data))
+        .then((data) => fetch(data))
         .finally(() => {
             if(lastRequest === requestCounter)
                 loading.value = false
         });
+}
+
+const refresh = () => {
+    load();
 }
 
 const init = () => {
@@ -99,7 +93,7 @@ const init = () => {
 
 init();
 
-defineExpose({load});
+defineExpose({refresh});
 
 </script>
 
