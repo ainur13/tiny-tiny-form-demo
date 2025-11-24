@@ -11,13 +11,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(o =>
 {
-    o.AddPolicy("local", p =>
+    o.AddPolicy("test", p =>
     {
-        p.WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        p.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
-});
+}); 
 
 var app = builder.Build();
 
@@ -27,10 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("test");
 
 app.MapControllers();
-
-app.UseCors("local");
 
 app.Run();
